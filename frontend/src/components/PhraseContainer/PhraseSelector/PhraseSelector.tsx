@@ -5,11 +5,12 @@ import styles from './PhraseSelector.module.scss';
 
 type PhraseContainerProps = {
    phrasebox: any[2];
+   style?: any;
  };
 
-export default function PhraseSelector({ phrasebox }: PhraseContainerProps) {
+export default function PhraseSelector({ phrasebox, style }: PhraseContainerProps) {
    return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} style={style}>
             <PhraseBox phrases={phrasebox[0]} />   
             {/* Separator line */}
             <div className="line"/>
