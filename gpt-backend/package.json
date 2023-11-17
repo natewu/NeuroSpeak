@@ -1,0 +1,18 @@
+{
+  "name": "neurospeak-chatgpt-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "node app.js"
+  },
+  "keywords": [],
+  "author": "Pratyay Banerjee",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "openai": "^4.18.0"
+  }
+}
