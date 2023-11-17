@@ -1,0 +1,30 @@
+.PhraseBox {
+    align-items: center;
+
+    display: flex;
+    flex-basis: 50%;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+}
+
+.container{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+
+    // box-shadow: 0 0 1px 0.5px rgba(0, 0, 0, 0.2);
+    margin: 5%;
+    height: 80%;
+    width: 100%;
+    border-radius: 5px;
+    padding: 1rem;
+}
+
+.phrase{
+    margin: 0 1rem;
+    width: max-content;
+    padding: 0 1rem;
+    border-radius: 10px;
+    background-color: rgba(128, 128, 128, 0.1);
+}

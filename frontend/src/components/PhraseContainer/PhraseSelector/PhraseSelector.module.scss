@@ -1,0 +1,13 @@
+.wrapper{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    height: 98%;
+    flex: 0.49;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+    // border-radius: 5px 5px 0 0;
+    align-self: flex-end;
+}
