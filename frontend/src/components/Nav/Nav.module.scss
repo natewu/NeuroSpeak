@@ -23,5 +23,23 @@
 }
 
 .mic{
-    color: white;
+  padding: 7px; 
+  transition: background-color 0.3s ease; 
+  color: aquamarine;
 }
+
+.customButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px; 
+    height: 42px;
+    background-color: #f2f2f2; 
+    border-radius: 50%; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+  
+    &:hover {
+      background-color: #f2f2f2; 
+    }
+  }
