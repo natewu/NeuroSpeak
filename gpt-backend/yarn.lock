@@ -430,6 +430,12 @@ node-fetch@^2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
+"nodeman@file:../../../AppData/Roaming/npm/node_modules/nodeman":
+  version "1.1.2"
+  resolved "file:../../../AppData/Roaming/npm/node_modules/nodeman"
+  dependencies:
+    colors "*"
+
 object-inspect@^1.9.0:
   version "1.13.1"
   resolved "https://registry.npmjs.org/object-inspect/-/object-inspect-1.13.1.tgz"
