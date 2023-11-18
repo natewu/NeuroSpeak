@@ -1,7 +1,7 @@
 import { RootState } from "redux/store";
 import {createSlice} from "@reduxjs/toolkit";
 
-class Phrase {
+export class Phrase {
    id: number;
    phrase: string;
    selected: boolean;
@@ -24,11 +24,27 @@ export const phrasesSlice = createSlice({
    },
    reducers: {
       select: (state, action) => {
+
+         // if already selected, unselect
+         if (state.phrases[action.payload].selected) {
+            state.selectedPhrases = state.selectedPhrases.filter((p) => p !== action.payload);
+            state.phrases[action.payload].selected = false;
+            return;
+         }
          state.selectedPhrases.push(action.payload);
          state.phrases[action.payload].selected = true;
       },
       add: (state, action) => {
-         state.phrases.push(new Phrase(state.phrases.length, action.payload));
+         for (let i = 0; i < action.payload.length; i++) {
+            const phrase = new Phrase(i, action.payload[i]);
+            
+            // dont add if already exists
+            if (state.phrases.find((p) => p.phrase === phrase.phrase)) {
+               continue;
+            }
+
+            state.phrases.push(phrase);
+         }
       }
    }
 });

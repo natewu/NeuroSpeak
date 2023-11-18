@@ -10,8 +10,15 @@ type PhraseContainerProps = {
 export default function PhraseContainer({left, right}: PhraseContainerProps) {
    return (
       <div className={styles.wrapper}>
-         <PhraseSelector phrasebox={left} style={{marginLeft: "-10px"}}/>
-         <PhraseSelector phrasebox={right} style={{marginRight: "-10px"}}/>
+         <div className={styles.phrase_selector}>
+            <PhraseSelector phrasebox={left} style={{marginLeft: "-10px"}}/>
+            <PhraseSelector phrasebox={right} style={{marginRight: "-10px"}}/>
+         </div>
+         <div className={styles.help}>
+            <div className={styles.text}>
+               Call for help
+            </div>
+         </div>
       </div>
    );
 };
