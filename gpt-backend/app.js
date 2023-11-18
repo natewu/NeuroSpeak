@@ -11,6 +11,10 @@ const openai = new OpenAI({
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.sendStatus(200);
+});
+
 app.post("/suggest-keywords", async (req, res) => {
   try {
     const { dataInput } = req.body;
