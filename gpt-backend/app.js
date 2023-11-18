@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const OpenAI = require("openai");
 const dotenv = require("dotenv");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -10,6 +11,7 @@ const openai = new OpenAI({
 });
 
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.sendStatus(200);
@@ -21,7 +23,7 @@ app.post("/suggest-keywords", async (req, res) => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: "Understand the context from the input and provide a limited set of single-worded response keywords." },
+        { role: "system", content: "Understand the context from the input and provide a limited set (max four) of single-worded response keywords." },
         { role: "user", content: `Context: ${dataInput}` },
         { role: "assistant", content: "Keywords: " },
       ],
@@ -36,7 +38,7 @@ app.post("/suggest-keywords", async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
