@@ -49,6 +49,15 @@ function App() {
       
    }, [dispatch, phrases])
 
+   // update left and right if phrases is selected
+   useEffect(() => {
+      const [leftSide, rightSide] = (splitPhrases(phrases));
+      setLeft(leftSide);
+      setRight(rightSide);
+      console.log("left: ", leftSide);
+      console.log("right: ", rightSide);
+   }, [phrases]);
+
 
    function splitPhrases(phrases: any) {
       const left = phrases.slice(0, Math.ceil(phrases.length / 2));
@@ -60,8 +69,8 @@ function App() {
       const [leftSide, rightSide] = (splitPhrases(phrases));
       setLeft(leftSide);
       setRight(rightSide);
-      console.log("left: ", leftSide);
-      console.log("right: ", rightSide);
+      // console.log("left: ", leftSide);
+      // console.log("right: ", rightSide);
    }, [phrases]);
 
    return (

@@ -24,15 +24,17 @@ export const phrasesSlice = createSlice({
    },
    reducers: {
       select: (state, action) => {
+         // must not mutate state directly
+         const index = state.phrases.findIndex((p) => p.id === action.payload);
+         state.phrases[index].selected = !state.phrases[index].selected;
 
-         // if already selected, unselect
-         if (state.phrases[action.payload].selected) {
-            state.selectedPhrases = state.selectedPhrases.filter((p) => p !== action.payload);
-            state.phrases[action.payload].selected = false;
-            return;
+         // add or remove from selectedPhrases
+         if (state.phrases[index].selected) {
+            state.selectedPhrases.push(state.phrases[index].id);
+         } else {
+            state.selectedPhrases = state.selectedPhrases.filter((p) => p !== state.phrases[index].id);
          }
-         state.selectedPhrases.push(action.payload);
-         state.phrases[action.payload].selected = true;
+        
       },
       add: (state, action) => {
          for (let i = 0; i < action.payload.length; i++) {
@@ -45,6 +47,11 @@ export const phrasesSlice = createSlice({
 
             state.phrases.push(phrase);
          }
+      },
+      filter: (state, action) => {
+         // filter from input array of id's and return the array state for those id's
+         state.phrases = state.phrases.filter((p) => action.payload.includes(p.id));
+
       }
    }
 });
@@ -52,6 +59,7 @@ export const phrasesSlice = createSlice({
 export const {select, add} = phrasesSlice.actions;
 
 export const selectPhrases = (state: RootState) => state.phrases.phrases;
+export const selectPhrase = (state: RootState, id: number) => state.phrases.phrases[id];
 
 export default phrasesSlice.reducer;
 
