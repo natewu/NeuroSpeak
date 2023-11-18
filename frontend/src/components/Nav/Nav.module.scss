@@ -1,20 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
 .wrapper{
     display: flex;
     flex-flow: row nowrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     box-sizing: border-box;
     text-align: center;
-    background-color: #90e0ef;
+    background-color: #31BAD4;
     // box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
     // border-radius: 5px;
-
+    padding: 0 1.5rem;
     flex: 0.05 1 15px;
 }
 
 .name{
     font-size: 1.5rem;
     font-weight: 500;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.mic{
     color: white;
 }
