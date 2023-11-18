@@ -1,6 +1,9 @@
+import {ReactComponent as Arrows} from './arrows.svg';
+import EastIcon from '@mui/icons-material/East';
+import NorthIcon from '@mui/icons-material/North';
 import React from 'react';
+import WestIcon from '@mui/icons-material/West';
 import styles from './TextBox.module.scss';
-import useWindup from "windups/dist/react/useWindup";
 import { useWindupString } from "windups";
 
 interface Props {
@@ -14,7 +17,16 @@ export default function TextBox(props: Props) {
 
    return (
       <div className={styles.wrapper}>
-         {phrase === "" ? text : phrase}
+         <div className={styles.phrasebox}>
+            {phrase === "" ? text : phrase}
+         </div>
+         <div className={styles.nav_wrapper}>
+            <div className={styles.nav}>
+               <WestIcon className={styles.west} />
+               <NorthIcon className={styles.north} />
+               <EastIcon className={styles.east} />
+            </div>
+         </div>
       </div>
    );
 }

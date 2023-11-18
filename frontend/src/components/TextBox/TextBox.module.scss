@@ -5,9 +5,50 @@
 
     flex: 0.25;
     flex-flow: column;
-
-    width: 100%;
-
-    // border-radius: 5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 500;
     justify-content: center;
+    position: relative;
+    width: 100%;
+}
+.phrasebox{
+    align-items: center;
+    display: flex;
+    flex: 0.9;
+    flex-flow: column;
+    justify-content: center;
+}
+.nav_wrapper{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 
+        0 -1px 5px hsl(0deg 0% 0% / 0.075),
+        0 1px 1px hsl(0deg 0% 0% / 0.075),
+        0 2px 2px hsl(0deg 0% 0% / 0.075),
+        0 10px 15px hsl(0deg 0% 0% / 0.075),;
+    flex: 0.1;
+    margin: 0 auto;
+    padding: 0.25rem;
+    position: absolute;
+    bottom: -30px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: max-content;
+    // transform: translate(-25%, -50%);
+}
+.nav{
+    background-color: #31BAD4;
+    border-radius: 10px;
+    color: white;
+    // width: 100%;
+    display: flex;
+    height: auto;
+    justify-content: space-around;
+    padding: 1rem;
+    *{
+        margin: 0 .25rem;
+        padding: 0;
+    }
 }
