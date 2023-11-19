@@ -23,7 +23,7 @@ app.post("/suggest-keywords", async (req, res) => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: "Understand the context from the input and provide a limited set (max eight) of single-worded response keywords." },
+        { role: "system", content: "Understand the context from the input and provide a limited set (min four and max eight) of single-worded response keywords." },
         { role: "user", content: `Context: ${dataInput}` },
         { role: "assistant", content: "Keywords: " },
       ],
