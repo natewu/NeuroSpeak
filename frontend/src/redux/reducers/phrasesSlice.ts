@@ -52,11 +52,15 @@ export const phrasesSlice = createSlice({
          // filter from input array of id's and return the array state for those id's
          state.phrases = state.phrases.filter((p) => action.payload.includes(p.id));
 
+      },
+      clear: (state) => {
+         state.phrases = [];
+         state.selectedPhrases = [];
       }
    }
 });
 
-export const {select, add} = phrasesSlice.actions;
+export const {select, add, clear} = phrasesSlice.actions;
 
 export const selectPhrases = (state: RootState) => state.phrases.phrases;
 export const selectPhrase = (state: RootState, id: number) => state.phrases.phrases[id];

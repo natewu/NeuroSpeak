@@ -1,12 +1,17 @@
-import { useState, useEffect } from 'react';
+import 'regenerator-runtime/runtime';
+
+import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { add, clear } from "redux/reducers/phrasesSlice";
+import { useEffect, useState } from 'react';
+
 import MicIcon from '@mui/icons-material/Mic';
 import styles from './Nav.module.scss';
-import 'regenerator-runtime/runtime';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
+import { useDispatch } from "react-redux";
 
 const App = () => {
   const [isListening, setIsListening] = useState(false);
   const [uniqueWords, setUniqueWords] = useState<string[]>([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Log unique words when listening stops
@@ -31,6 +36,17 @@ const App = () => {
         // Transcript → Server
         const result = await sendTranscriptToServer();
         console.log('API Response:', result);
+
+        // handle dispatch clear then add
+        dispatch(
+          clear()
+        );
+        dispatch(
+          add(
+            result.keywords
+          )
+        );
+
       }, 10000);
     }
     setIsListening(!isListening);
