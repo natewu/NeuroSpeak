@@ -38,16 +38,10 @@ const App = () => {
         console.log('API Response:', result);
 
         // handle dispatch clear then add
-        dispatch(
-          clear()
-        );
-        dispatch(
-          add(
-            result
-          )
-        );
+        dispatch(clear());
+        dispatch(add(result.keywords));
 
-      }, 10000);
+      }, 8000);
     }
     setIsListening(!isListening);
   };

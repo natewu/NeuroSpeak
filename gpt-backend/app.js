@@ -30,8 +30,10 @@ app.post("/suggest-keywords", async (req, res) => {
       model: "gpt-3.5-turbo",
     });
 
-    const keywords = completion.choices[0].message.content.trim();
-    res.json({ keywords });
+    const keywordsString = completion.choices[0].message.content.trim();
+    const keywordsArray = keywordsString.split("\n").filter(keyword => keyword.trim() !== '');
+
+    res.json({ keywords: keywordsArray });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
