@@ -52,6 +52,7 @@ function PhraseElement({id}: {id: number}) {
    console.log("phrase: ", phrase);
    function toggleSelect(index: number) {
       dispatch(select(index));
+      setSelected(!selected);
       // console.log(phrases[id])
       
    }
