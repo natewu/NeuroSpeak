@@ -24,23 +24,33 @@ const App = () => {
   const toggleListening = async () => {
     if (isListening) {
       SpeechRecognition.stopListening();
+      setIsListening(false);
+
+      const result = await sendTranscriptToServer();
+      console.log('API Response:', result);
+
+      dispatch(clear());
+      dispatch(add(result.keywords));
+      console.log(result.keywords);
+
+      resetTranscript();
     } else {
       SpeechRecognition.startListening({ continuous: true, language: 'en-IN' });
-      resetTranscript();
+      
 
-      // Auto stop listening after 10s
-      setTimeout(async () => {
+      // Auto stop listening after 8s
+      setTimeout(() => {
         SpeechRecognition.stopListening();
         setIsListening(false);
 
         // Transcript → Server
-        const result = await sendTranscriptToServer();
-        console.log('API Response:', result);
+        // const result = await sendTranscriptToServer();
+        // console.log('API Response:', result);
 
         // handle dispatch clear then add
-        dispatch(clear());
-        dispatch(add(result.keywords));
-
+        // dispatch(clear());
+        // dispatch(add(result.keywords));
+        // console.log(result.keywords);
       }, 8000);
     }
     setIsListening(!isListening);

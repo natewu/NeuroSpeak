@@ -23,7 +23,7 @@ app.post("/suggest-keywords", async (req, res) => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: "system", content: "Understand the context from the input and provide a limited set (max four) of single-worded response keywords." },
+        { role: "system", content: "Understand the context from the input and provide a limited set (max eight) of single-worded response keywords." },
         { role: "user", content: `Context: ${dataInput}` },
         { role: "assistant", content: "Keywords: " },
       ],
@@ -31,7 +31,7 @@ app.post("/suggest-keywords", async (req, res) => {
     });
 
     const keywordsString = completion.choices[0].message.content.trim();
-    const keywordsArray = keywordsString.split("\n").filter(keyword => keyword.trim() !== '');
+    const keywordsArray = keywordsString.split(",").map(keyword => keyword.trim());
 
     res.json({ keywords: keywordsArray });
   } catch (error) {
