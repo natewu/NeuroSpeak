@@ -17,8 +17,27 @@ interface Props {
 export default function TextBox(props: Props) {
    const phrase = useSelector(selectPhrases);
    const [text] = useWindupString("What would you like to say?");
-
+   const msg = new SpeechSynthesisUtterance();
+   msg.text = text;
    const [selected, setSelected] = useState<null|string>(null);
+
+   // TTS
+   useEffect(() => {
+      if (selected !== null) {
+         msg.text = selected;
+         window.speechSynthesis.cancel();
+         window.speechSynthesis.speak(msg);
+
+         console.log("speaking: ", selected);
+      }
+   }, [selected]);
+   
+   function speech(text: string) {
+      msg.text = text;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(msg);
+      console.log("speaking: ", text)
+   }
 
    // Filter out the phrase that is selected
    useEffect(() => {
@@ -29,7 +48,7 @@ export default function TextBox(props: Props) {
    }, [phrase]);
 
    return (
-      <div className={styles.wrapper}>
+      <div className={styles.wrapper} onClick={() => speech(selected!)}>
          <div className={styles.phrasebox}>
             {selected === null ? text : selected}
          </div>

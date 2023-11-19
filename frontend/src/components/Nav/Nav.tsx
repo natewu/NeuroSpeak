@@ -43,7 +43,7 @@ const App = () => {
         );
         dispatch(
           add(
-            result.keywords
+            result
           )
         );
 
