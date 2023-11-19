@@ -65,7 +65,7 @@ function PhraseElement({id}: {id: number}) {
          style={{backgroundColor: `${selected ? "#31BAD2" : "rgba(128, 128, 128, 0.1)"}`}}
          onClick={() => toggleSelect(id)}
       >
-         <p>{phrase.phrase}</p>
+         <p>{phrase?.phrase}</p>
       </div>
    )
 }
