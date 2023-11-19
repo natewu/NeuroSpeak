@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import Nav from "components/Nav/Nav";
-import Phrase from "redux/reducers/phrasesSlice";
-import PhraseBox from "./components/PhraseContainer/PhraseBox/PhraseBox";
 import PhraseContainer from "./components/PhraseContainer/PhraseContainer";
 import TextBox from "./components/TextBox/TextBox";
 import styles from "./App.module.scss";

@@ -49,7 +49,7 @@ function PhraseElement({id}: {id: number}) {
 
    // }, [phrases, id]);
 
-   console.log("phrase: ", phrase);
+   // console.log("phrase: ", phrase);
    function toggleSelect(index: number) {
       dispatch(select(index));
       setSelected(!selected);
@@ -63,7 +63,7 @@ function PhraseElement({id}: {id: number}) {
    }, [phrase, id])
    return(
       <div className={styles.phrase}
-         style={{backgroundColor: `${phrase.selected ? "#31BAD2" : "rgba(128, 128, 128, 0.1)"}`}}
+         style={{backgroundColor: `${phrase?.selected ? "#31BAD2" : "rgba(128, 128, 128, 0.1)"}`}}
          onClick={() => toggleSelect(id)}
       >
          <p>{phrase?.phrase}</p>

@@ -43,7 +43,7 @@ const App = () => {
         );
         dispatch(
           add(
-            result.keywords
+            result
           )
         );
 
@@ -69,6 +69,8 @@ const App = () => {
         },
         body: JSON.stringify({ dataInput: uniqueWords.join(' ') }),
       });
+
+      console.log("uniqueWords: ", uniqueWords.join(' '));
 
       if (response.ok) {
         const result = await response.json();
