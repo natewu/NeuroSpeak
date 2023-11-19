@@ -13,7 +13,7 @@ export default function PhraseSelector({ phrasebox, style }: PhraseContainerProp
       <div className={styles.wrapper} style={style}>
             <PhraseBox phrases={phrasebox} />   
             {/* Separator line */}
-            <div className="line"/>
+            {/* <div className="line"/> */}
             {/* <PhraseBox phrases={phrasebox[1]} />    */}
       </div>
    );
