@@ -20,7 +20,7 @@ export default function PhraseBox({phrases}: {phrases: Phrase[]}) {
       setPhrase(statePhrases.filter((phrase) => phrase));
    }, [statePhrases, ]);
 
-   console.log("phrases: ", phrases);
+   // console.log("phrases: ", phrases);
 
    
 
@@ -57,7 +57,7 @@ function PhraseElement({id}: {id: number}) {
    }
 
    useEffect(() => {
-      console.log("id: ", id)
+      // console.log("id: ", id)
      
    }, [phrase, id])
    return(
