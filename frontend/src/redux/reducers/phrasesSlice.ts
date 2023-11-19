@@ -11,6 +11,10 @@ export class Phrase {
       this.phrase = phrase;
       this.selected = false;
    }
+
+   select(bool: boolean = false) {
+      this.selected = bool;
+   }
 }
 
 export const phrasesSlice = createSlice({
@@ -25,16 +29,28 @@ export const phrasesSlice = createSlice({
    reducers: {
       select: (state, action) => {
          // must not mutate state directly
+         const target = state.phrases.find((p) => p.id === action.payload);
          const index = state.phrases.findIndex((p) => p.id === action.payload);
-         state.phrases[index].selected = !state.phrases[index].selected;
+         // state.phrases[index].selected = !state.phrases[index].selected;
 
          // add or remove from selectedPhrases
-         if (state.phrases[index].selected) {
-            state.selectedPhrases.push(state.phrases[index].id);
-         } else {
-            state.selectedPhrases = state.selectedPhrases.filter((p) => p !== state.phrases[index].id);
-         }
-        
+         // if (state.phrases[index].selected) {
+         //    state.selectedPhrases.push(state.phrases[index].id);
+         // } else {
+         //    state.selectedPhrases = state.selectedPhrases.filter((p) => p !== state.phrases[index].id);
+         // }
+
+         // only one selected at a time
+         const draft = new Phrase(state.phrases[index].id, state.phrases[index].phrase);
+         draft.select(!target!.selected);
+
+         state.phrases[index] = draft;
+
+         state.phrases.forEach((p) => {
+            if (p.id !== target!.id) {
+               p.select(false);
+            }
+         });
       },
       add: (state, action) => {
          for (let i = 0; i < action.payload.length; i++) {
