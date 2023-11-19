@@ -62,6 +62,10 @@ function App() {
    function splitPhrases(phrases: any) {
       const left = phrases.slice(0, Math.ceil(phrases.length / 2));
       const right = phrases.slice(Math.ceil(phrases.length / 2));
+
+      // filter out undefined phrases
+      left.filter((phrase: any) => phrase);
+      right.filter((phrase: any) => phrase);
       return [left, right];
    }
 
