@@ -9,11 +9,12 @@ export default function PhraseBox({phrases}: {phrases: Phrase[]}) {
    const dispatch = useDispatch();
    const statePhrases = useSelector(selectPhrases);
    const [phrase, setPhrase] = useState<Phrase[]>([]);
+   const [selected, setSelected] = useState<null | number>(null);
 
    // set selected phrase
-   function selectPhrase(index: number) {
-      dispatch(select(index));
-   }
+   // function selectPhrase(index: number) {
+   //    dispatch(select(index));
+   // }
 
    useEffect(() => {
       // set phrase to phrases filtered from statePhrases
@@ -22,13 +23,25 @@ export default function PhraseBox({phrases}: {phrases: Phrase[]}) {
 
    // console.log("phrases: ", phrases);
 
-   
+   function toggleSelect(id: number) {
+      // unselect all phrases
+      setSelected(null);
+      // select phrase toggle
+      if (id !== selected) {
+         setSelected(id);
+         dispatch(select(id));
+      }
+      else{
+         setSelected(null);
+         dispatch(select(id));
+      }
+   }
 
    return (
       <div className={styles.PhraseBox}>
          <div className={styles.container}>
             {phrases.map((phrase, index) => (
-               <PhraseElement key={index} id={phrase.id}/>
+               <PhraseElement key={index} id={phrase.id} selected={phrase.id===selected } onClick={() => toggleSelect(phrase.id)}/>
             ))}
          </div>
          
@@ -36,12 +49,12 @@ export default function PhraseBox({phrases}: {phrases: Phrase[]}) {
    );
 }
 
-function PhraseElement({id}: {id: number}) {
+function PhraseElement({id, selected, onClick}: {id: number, selected?: boolean, onClick?: () => void}) {
    // const phrases = useSelector(selectPhrases);
    const phrase = useSelector((state: RootState) => selectPhrase(state, id));
    const dispatch = useDispatch();
    // const [phrase, setPhrase] = useState<Phrase>();
-   const [selected, setSelected] = useState(false);
+   // const [selected, setSelected] = useState(false);
 
    // useEffect(() => {
    //    // set phrase to phrases filtered from statePhrases
@@ -52,7 +65,7 @@ function PhraseElement({id}: {id: number}) {
    console.log("phrase: ", phrase);
    function toggleSelect(index: number) {
       dispatch(select(index));
-      setSelected(!selected);
+      // setSelected(!selected);
       // console.log(phrases[id])
       
    }
@@ -64,7 +77,7 @@ function PhraseElement({id}: {id: number}) {
    return(
       <div className={styles.phrase}
          style={{backgroundColor: `${selected ? "#31BAD2" : "rgba(128, 128, 128, 0.1)"}`}}
-         onClick={() => toggleSelect(id)}
+         onClick={onClick}
       >
          <p>{phrase?.phrase}</p>
       </div>
